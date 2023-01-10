@@ -1,7 +1,8 @@
-import React, {useReducer, useCallback, useState} from 'react';
+import React, {useReducer, useCallback, useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GreetingFunctional from './GreetingFunctional';
+import ListCreator, {ListItem} from './ListCreator';
 
 const reducer = (state: any, action: any) => {
   console.log("enteredNameReducer");
@@ -28,6 +29,7 @@ function App() {
 
   const [startCount, setStartCount] = useState(0);
   const [count, setCount] = useState(0);
+  const [listItems, setListItems] = useState<Array<ListItem>>();
 
   const setCountCallback = useCallback(() => {
     const inc = count +1 > startCount ? count +1 : Number(count + 1) + startCount;
@@ -41,6 +43,14 @@ function App() {
   const onChangeStartCount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStartCount(Number(e.target.value));
   }
+
+  useEffect(() => {
+    const li = [];
+    for(let i = 0; i < count; i++) {
+      li.push({ id: i });
+    }
+    setListItems(li);
+  }, [count]);
 
   return (
     <div className="App">
@@ -61,6 +71,9 @@ function App() {
             <label>{count}</label>
             <br />
             <button onClick={onWelcomeBtnClick}>Increment number</button>
+          </div>
+          <div>
+            <ListCreator listItems={listItems} />
           </div>
       </header>
     </div>
