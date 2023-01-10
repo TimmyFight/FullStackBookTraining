@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useCallback, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GreetingFunctional from './GreetingFunctional';
@@ -26,6 +26,22 @@ const initialState = {
 function App() {
   const[{message, enteredName}, dispatch] = useReducer(reducer, initialState);
 
+  const [startCount, setStartCount] = useState(0);
+  const [count, setCount] = useState(0);
+
+  const setCountCallback = useCallback(() => {
+    const inc = count +1 > startCount ? count +1 : Number(count + 1) + startCount;
+    setCount(inc);
+  }, [count, startCount]);
+
+  const onWelcomeBtnClick = () => {
+    setCountCallback();
+  }
+
+  const onChangeStartCount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStartCount(Number(e.target.value));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -35,6 +51,17 @@ function App() {
           message={message}
           enteredName={enteredName}
           greetingDispatcher={dispatch} />
+
+          <div style={{marginTop: '10px'}}>
+            <label>Write a number and increment it</label>
+            <br />
+            <input value={startCount}
+              onChange={onChangeStartCount}
+              style={{width: '.75rem'}} />&nbsp;
+            <label>{count}</label>
+            <br />
+            <button onClick={onWelcomeBtnClick}>Increment number</button>
+          </div>
       </header>
     </div>
   );
