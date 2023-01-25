@@ -25,7 +25,10 @@ const DisplayText = () => {
         <button data-testid="input-submit" onClick={onClickShowMsg}>Show the message</button>
       </div>
       <div>
-      <label data-testid="final-msg">{msg}</label>
+        <label data-testid="final-msg">{msg}</label>
+      </div>
+      <div>
+        Elemnt for testing purposes only
       </div>
     </form>
   );

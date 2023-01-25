@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing DisplayText component Compatible with snapshot 1`] = `
+<body>
+  <div>
+    <form>
+      <div>
+        <label>
+          What is your name?
+        </label>
+      </div>
+      <div>
+        <input
+          data-testid="user-input"
+          value=""
+        />
+      </div>
+      <div>
+        <button
+          data-testid="input-submit"
+        >
+          Show the message
+        </button>
+      </div>
+      <div>
+        <label
+          data-testid="final-msg"
+        />
+      </div>
+      <div>
+        Elemnt for testing purposes only
+      </div>
+    </form>
+  </div>
+</body>
+`;
