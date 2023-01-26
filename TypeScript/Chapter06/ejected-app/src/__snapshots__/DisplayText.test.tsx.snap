@@ -30,6 +30,9 @@ exports[`Testing DisplayText component Compatible with snapshot 1`] = `
       <div>
         Elemnt for testing purposes only
       </div>
+      <ul
+        style="margin-top: 1rem; list-style-type: none;"
+      />
     </form>
   </div>
 </body>
