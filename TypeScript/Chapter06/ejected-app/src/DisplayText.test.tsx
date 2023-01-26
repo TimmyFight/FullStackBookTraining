@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
+import { render, fireEvent, screen, act } from "@testing-library/react";
 import DisplayText from "./DisplayText";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -59,10 +59,8 @@ describe("Testing DisplayText component", () => {
     const btn = screen.getByTestId("input-submit");
     fireEvent.click(btn);
 
+    await act(() => promise);
     expect(label).toBeInTheDocument();
-    await waitFor(() => promise);
-    await waitFor (() => {
-      expect(label.innerHTML).toBe(message);
-    });
+    expect(label.innerHTML).toBe(message);
   });
 });
