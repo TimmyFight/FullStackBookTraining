@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux'
 import './App.css';
 import { USER_TYPE } from './store/UserReducer';
+import UserDisplay from './UserDisplay';
 
 function App() {
   const [userId, setUserID] = useState(0);
@@ -36,6 +37,7 @@ function App() {
     <div className="App">
       <label>User ID</label>
       <input value={userId} onChange={onChangeUserId} />
+      <UserDisplay />
     </div>
   );
 }
