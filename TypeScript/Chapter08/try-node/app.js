@@ -1,7 +1,7 @@
-const fs = require("fs");
+const fs = require("fs/promises");
 
-fs.writeFile("test.txt", "Welcome World!", () => {
-  fs.readFile("test.txt", "utf8", (err, data) => {
-    console.log(data);
-  });
-});
+(async () => {
+  await fs.writeFile("test-promises.txt", "Welcome World, here are Promises.");
+  const readContent = await fs.readFile("test-promises.txt", "utf8");
+  console.log(readContent);
+})();
