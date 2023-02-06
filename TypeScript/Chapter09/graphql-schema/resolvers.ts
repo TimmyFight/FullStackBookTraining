@@ -1,6 +1,7 @@
 import {IResolvers} from '@graphql-tools/utils';
 import {v4} from 'uuid';
 import {GqlContext} from './GqlContext';
+import {todos} from "./db";
 
 interface User {
   id: string;
@@ -53,6 +54,24 @@ const resolvers: IResolvers = {
         },
       ];
     },
+  },
+  Mutation: {
+    addTodo: async (
+      parent: any,
+      args: {
+        title: string;
+        description: string;
+      },
+      ctx: GqlContext,
+      info: any
+    ): Promise<Todo> => {
+      todos.push({
+        id: v4(),
+        title: args.title,
+        description: args.description
+      });
+      return todos[todos.length - 1];
+    }
   },
 };
 
